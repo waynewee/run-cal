@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap");
+
+:root {
+  font-family: "Archivo", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #f4f1ea;
+  background:
+    radial-gradient(circle at top, rgba(252, 76, 2, 0.16), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 25%),
+    linear-gradient(180deg, #171717 0%, #0b0b0b 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --display-font: "Barlow Condensed", Impact, sans-serif;
+  --heading-text: #ffffff;
+  --body-text: #d5d1ca;
+  --muted-text: #a6a19a;
+  --accent-text: #fc4c02;
+  --button-color: #fc4c02;
+  --button-muted: #232323;
+  --panel-color: rgba(24, 24, 24, 0.92);
+  --card-color: rgba(31, 31, 31, 0.96);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --panel-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(252, 76, 2, 0.18), transparent 22%),
+    linear-gradient(180deg, #161616 0%, #090909 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(252, 76, 2, 0.9);
+  outline-offset: 3px;
+}
+
+a {
+  color: inherit;
+}
