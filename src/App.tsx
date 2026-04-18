@@ -219,18 +219,6 @@ function App() {
             {statusMessage}
           </p>
           {errorMessage ? <p className="error-line">{errorMessage}</p> : null}
-
-          {!plan ? (
-            <article className="empty-card">
-              <p className="section-label">Setup</p>
-              <h2>{hasLoadedPlan ? "Minimal by design" : "Loading plan"}</h2>
-              <p>
-                {hasLoadedPlan
-                  ? "Import a JSON file with one-time events. Each event needs an id, title, date, and startTime. Optional fields like endTime, location, notes, and overrides are supported."
-                  : "Checking IndexedDB for a saved workout plan on this device."}
-              </p>
-            </article>
-          ) : null}
         </section>
       ) : (
         <section
