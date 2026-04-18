@@ -5,7 +5,9 @@ import {
   clearStoredPlan,
   createTemplatePlan,
   downloadJson,
+  formatCalendarDate,
   formatLongDate,
+  formatWeekday,
   getEventsForDate,
   getResolvedEvents,
   parsePlanJson,
@@ -38,6 +40,7 @@ function App() {
   const [activeView, setActiveView] = useState<ActiveView>("today");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const today = new Date();
+  const todayDateKey = toDateKey(today);
   const todaysEvents = plan ? getEventsForDate(plan, today) : [];
   const allEvents = plan
     ? getResolvedEvents(plan).sort(
@@ -46,6 +49,7 @@ function App() {
           left.startTime.localeCompare(right.startTime),
       )
     : [];
+  const nextWorkout = allEvents.find((event) => event.date > todayDateKey);
 
   useEffect(() => {
     let isCurrent = true;
@@ -234,10 +238,19 @@ function App() {
                   <p className="section-label">
                     {activeView === "plan" ? "Full plan" : "Today"}
                   </p>
-                  <h2>
+                  <h2
+                    className={
+                      activeView === "today" ? "date-with-weekday" : ""
+                    }
+                  >
                     {activeView === "plan"
                       ? "Plan preview"
-                      : formatLongDate(today)}
+                      : formatCalendarDate(today)}
+                    {activeView === "today" ? (
+                      <span className="date-weekday">
+                        {formatWeekday(today)}
+                      </span>
+                    ) : null}
                   </h2>
                 </div>
               </div>
@@ -270,7 +283,10 @@ function App() {
                   <h3>No workout today</h3>
                   <p>
                     The active plan has no events scheduled for{" "}
-                    {formatLongDate(today).toLowerCase()}.
+                    {formatCalendarDate(today)}.{" "}
+                    {nextWorkout
+                      ? `Next event is scheduled for ${formatNextWeekday(nextWorkout.date)}.`
+                      : "No future events are scheduled in the active plan."}
                   </p>
                 </article>
               )}
@@ -328,6 +344,20 @@ function EventCard({ workout, showDate = false }: EventCardProps) {
       ) : null}
     </article>
   );
+}
+
+function toDateKey(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatNextWeekday(dateKey: string): string {
+  const [year, month, day] = dateKey.split("-").map(Number);
+
+  return `next ${formatWeekday(new Date(year, month - 1, day))}`;
 }
 
 export default App;

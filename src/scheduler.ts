@@ -350,6 +350,19 @@ export function formatLongDate(date: Date): string {
   }).format(date);
 }
 
+export function formatCalendarDate(date: Date): string {
+  return new Intl.DateTimeFormat(undefined, {
+    month: "long",
+    day: "numeric",
+  }).format(date);
+}
+
+export function formatWeekday(date: Date): string {
+  return new Intl.DateTimeFormat(undefined, {
+    weekday: "long",
+  }).format(date);
+}
+
 function parseEvent(value: unknown): WorkoutEvent {
   if (!isRecord(value)) {
     throw new Error("Invalid plan format: each event must be an object.");

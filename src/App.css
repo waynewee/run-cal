@@ -217,6 +217,19 @@
   text-transform: uppercase;
 }
 
+.date-with-weekday {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.75rem;
+}
+
+.date-weekday {
+  color: var(--accent-text);
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+}
+
 .event-list {
   display: grid;
   gap: 0.9rem;
